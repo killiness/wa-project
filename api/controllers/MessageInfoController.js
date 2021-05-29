@@ -19,11 +19,11 @@ var exits = {
 module.exports = {
 
     messageList: async function (req, res) {
-        try{
-            var messages =await MessageInfo.find({
-                state:"1",
-                userID:req.user.id,
-                isDelete:0,
+        try {
+            var messages = await MessageInfo.find({
+                state: "1",
+                userID: req.user.id,
+                isDelete: 0,
             });
             var messageList = []
             console.log(messages)
@@ -33,12 +33,12 @@ module.exports = {
             var result = exits.success;
             result.data = messageList;
             return res.json(result);
-        }catch(err){
+        } catch (err) {
             console.log(err)
             var result = exits.faild;
             return res.json(result);
         }
-       
+
     },
 
     update: async function (req, res) {
@@ -79,6 +79,16 @@ module.exports = {
         var success = exits.success;
         success.message = "New Message was created successfully";
 
+        return res.json(success);
+    },
+
+    info: async function (req, res) {
+        let messageId = req.body.messageId;
+        var message = await MessageInfo.findOne({
+            id: messageId,
+        })
+        var success = exits.success;
+        success.data = message;
         return res.json(success);
     }
 };

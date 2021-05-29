@@ -35,11 +35,14 @@ module.exports.routes = {
   'POST /api/v1/login':       {controller:'UserController',action:'login'},
   'POST /api/v1/register':    {controller:'UserController',action:'register'},
   'POST /api/v1/token':       {controller:'UserController',action:'token'},
+  'POST /api/v1/user':        {controller:'UserController',action:'info'},
 
   'POST /api/v1/messages':      {controller:'MessageInfoController',action:'messageList'},
   'POST /api/v1/add_message':   {controller:'MessageInfoController',action:'create'},
   'POST /api/v1/update_message':{controller:'MessageInfoController',action:'update'},
+  'POST /api/v1/message':       {controller:'MessageInfoController',action:'info'},
 
   'POST /api/v1/clients':       {controller:'ClientInfoController',action:'clientInfo'},
   'POST /api/v1/client_create': {controller:'ClientInfoController',action:'create'},
+  'POST /api/v1/client':        {controller:'ClientInfoController',action:'info'},
 };

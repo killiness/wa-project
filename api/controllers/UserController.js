@@ -22,6 +22,15 @@ var exits = {
 module.exports = {
     friendlyName: "UserController",
 
+    info: async function (req, res) {
+        var userId = req.user.id;
+        var user = await User.findOne({
+            id:userId,
+        })
+        var result = exits.success;
+        result.data = user;
+        return res.json(result);
+    },
 
     register: async function (req, res) {
 
@@ -53,7 +62,7 @@ module.exports = {
         var user = await User.findOne({
             name: name,
         })
-        
+
         if (!user) {
             var result = exits.faild;
             result.code = 10000;

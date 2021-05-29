@@ -114,6 +114,16 @@ module.exports = {
             .catch((err) => {
                 console.log(err)
             })
+    },
+    info: async function (req, res) {
+        var session = req.body.session;
+        var client = await ClientInfo.findOne({
+            session: session,
+        })
+        var result = exits.success
+        result.data = client;
+        return res.json(result);
+
     }
 
 
