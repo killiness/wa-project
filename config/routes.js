@@ -45,4 +45,12 @@ module.exports.routes = {
   'POST /api/v1/clients':       {controller:'ClientInfoController',action:'clientInfo'},
   'POST /api/v1/client_create': {controller:'ClientInfoController',action:'create'},
   'POST /api/v1/client':        {controller:'ClientInfoController',action:'info'},
+
+  'POST /api/v1/add_address':   {controller:'AddressBookController',action:'create'},
+  'POST /api/v1/address_list':  {controller:'AddressBookController',action:'addressList'},
+  'POST /api/v1/address':       {controller:'AddressBookController',action:'info'},
+  'POST /api/v1/add_address_more':   {controller:'AddressBookController',action:'createMore'},
+
+  'POST /api/v1/send_messages': {controller:'SendMessageController',action:'sendList'},
+  'POST /api/v1/send_info':     {controller:'SendMessageController',action:'info'},
 };

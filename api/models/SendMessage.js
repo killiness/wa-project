@@ -17,9 +17,12 @@ module.exports = {
     },
 
     address: {
-      type: 'number',
-      columnType: 'int',
+      type: 'string',
       description: 'address'
+    },
+    
+    messageID:{
+      type: "number",
     },
 
     client: {

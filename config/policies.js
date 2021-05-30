@@ -25,9 +25,16 @@ module.exports.policies = {
   MessageInfoController: {
     '*': 'isAuth'
   },
+
   ClientInfoController: {
     '*': 'isAuth'
-  }
+  },
 
+  AddressBookController: {
+    '*': 'isAuth'
+  },
+  SendMessageController: {
+    '*': 'isAuth'
+  }
 
 };

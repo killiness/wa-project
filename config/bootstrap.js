@@ -20,10 +20,57 @@ module.exports.bootstrap = async function () {
   //   return;
   // }
   //
-  await Role.createEach([
-    { key: 'admin', name: 'Super Admin', description:'is a admin'},
-    { key: 'editor', name: 'Normal Editor',  description:'is a user'},
-    // etc.
-  ]);
+  if (!(await Role.count() > 0)) {
+    await Role.createEach([
+      { key: 'admin', name: 'Super Admin', description: 'is a admin' },
+      { key: 'editor', name: 'Normal Editor', description: 'is a user' },
+      // etc.
+    ]);
+  }
+
+
+  // await User.createEach({
+  //   name: 'kall',
+  //   password: await sails.helpers.passwords.hashPassword('asd123'),
+  //   roleKey: 'admin'
+  // }, {
+  //   name: 'jws',
+  //   password: await sails.helpers.passwords.hashPassword('asd123'),
+  //   roleKey: 'editor'
+  // });
+
+  // await AddressBook.createEach({
+  //   phoneNumber: '13452462429',
+  //   userID: '1'
+  // },
+  //   {
+  //     phoneNumber: '13452462428',
+  //     userID: '2'
+  //   }, {
+  //   phoneNumber: '13452462427',
+  //   userID: '2'
+  // }, {
+  //   phoneNumber: '13452462426',
+  //   userID: '2'
+  // });
+
+  // await SendMessage.createEach({
+  //   address: "123452462428",
+  //   content: "sssssss",
+  //   messaageID: '1'
+  // }, {
+  //   address: "123452462428",
+  //   content: "sssssss",
+  //   messaageID: '1'
+  // }, {
+  //   address: "123452462428",
+  //   content: "sssssss",
+  //   messaageID: '1'
+  // }, {
+  //   address: "123452462428",
+  //   content: "sssssss",
+  //   messaageID: '1'
+  // })
+
 
 };
