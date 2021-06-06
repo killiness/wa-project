@@ -49,7 +49,9 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-mysql',
-    url: 'mysql://root:Root992772015...@127.0.0.1:3306/wa_schema',
+    // url: 'mysql://root:Root992772015...@127.0.0.1:3306/wa_schema',
+    url: 'mysql://sails:Sails992772015...@127.0.0.1:3306/sails_data',
+
 
   },
 

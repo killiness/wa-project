@@ -22,7 +22,6 @@ module.exports = {
       description: '号码',
     },
 
-
     messageID: {
       type: 'number',
       columnType: 'int',
@@ -34,6 +33,7 @@ module.exports = {
       columnType: 'int',
       description: 'user'
     },
+    
   },
 
 };

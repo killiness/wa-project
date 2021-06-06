@@ -4,7 +4,7 @@ const { session } = require("../../config/session");
 module.exports = function(req, res, next) {
   var bearerToken;
   var bearerToken = req.headers['authorization'];
-  //console.log(bearerHeader);
+  console.log(req.headers);
 
   jwt.verify(bearerToken, session.secret, function(err, decoded) {
     if (err) {

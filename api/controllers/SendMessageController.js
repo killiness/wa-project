@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const { testBookOne, testMsgOne, findMessages, SendMessageNull } = require("../../config/sendmessageConfig");
+
 var exits = {
     success: {
         code: 20000,
@@ -29,7 +31,25 @@ module.exports = {
         return res.json(success);
     },
 
-    sendList: async function (req, res) {
+    listAll:async function (req, res) {
+       var sendMessages =await SendMessage.find({
+           isDelete:0,
+       })
+       var result = exits.success;
+       result.data = sendMessages;
+       return res.json(result);
+    },
+
+    toList: async function (req, res) {
+        // testMsgOne()
+        var sendMessages = findMessages();
+        console.log("send msg length:"+sendMessages.length)
+        await SendMessage.createEach(sendMessages);
+        SendMessageNull();
+        return res.json(exits.success)
+    },
+
+    sendListbyUser: async function (req, res) {
         var user = await User.findOne(req.user.id);
         let page = req.body.page;
         let limit = req.body.limit;
@@ -39,11 +59,10 @@ module.exports = {
         if (user.roleKey == 'editor') {
             var messages = await MessageInfo.find({
                 userID: req.user.id,
-                isDelete: 0,
             });
             var messageId = []
-            for (var msg in messages) {
-                messageId.push(msg.id);
+            for (var i = 0; i < messages.length; i++) {
+                messageId.push(messages[i].id)
             }
             sql.where.messageID = messageId;
         }
@@ -56,6 +75,30 @@ module.exports = {
 
         var result = exits.success;
 
+        result.total = count;
+        result.limit = limit;
+        result.page = page;
+        result.data = sendList;
+        return res.json(result)
+    },
+
+    sendListbyMsg: async function (req, res) {
+        var user = await User.findOne(req.user.id);
+        let page = req.body.page;
+        let limit = req.body.limit;
+        let messageId = req.body.messageId;
+        var sql = {}
+        sql.where = {}
+        sql.where.isDelete = 0;
+
+        sql.where.messageID = messageId;
+        var count = (await SendMessage.find(sql)).length;
+        sql.limit = limit;
+        sql.skip = (page - 1) * limit;
+        sql.sort = 'createdAt DESC';
+        var sendList = await SendMessage.find(sql);
+
+        var result = exits.success;
         result.total = count;
         result.limit = limit;
         result.page = page;

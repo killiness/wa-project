@@ -12,7 +12,6 @@ module.exports = {
       type: 'string',
       required: true,
       description: 'message info',
-      maxLength: 1000,
       example: 'Mary Sue van der McHenst'
     },
 

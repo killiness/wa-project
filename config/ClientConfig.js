@@ -1,20 +1,19 @@
 var client = {
-    session:"",
-    state:"",
-    send_time:"",
-    client:Object,
+    session: "",
+    state: "",
+    send_time: "",
+    client: Object,
 }
+clients = []
 
-var clients = []
-
-exports.Add = function(client){
+exports.Add = function (client) {
     clients.push(client);
 }
 
-exports.update = function(count,client){
+exports.update = function (count, client) {
     clients[count] = client;
 }
 
-exports.find = function(){
+exports.find = function () {
     return clients;
 }

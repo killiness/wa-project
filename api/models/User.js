@@ -39,14 +39,19 @@ module.exports = {
 
     totalSend: {
       type: 'number',
-      columnType:'int',
+      columnType: 'int',
       description: '总发送数量'
     },
 
     send: {
       type: 'number',
-        columnType:'int',
+      columnType: 'int',
       description: '已发送数量'
+    },
+
+    balance: {
+      type: 'number',
+      defaultsTo: 0,
     },
 
     lastLoginIp: {
@@ -61,7 +66,7 @@ module.exports = {
       description: 'last time'
     },
   },
-  customToJSON: function() {
+  customToJSON: function () {
     // No password return result copy
     return _.omit(this, ['password'])
   },

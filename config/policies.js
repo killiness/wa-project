@@ -20,6 +20,8 @@ module.exports.policies = {
   // '*': true,
   UserController: {
     token: 'isAuth',
+    info: 'isAuth',
+    spreadInfo: 'isAuth',
   },
 
   MessageInfoController: {

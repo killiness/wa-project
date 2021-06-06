@@ -23,12 +23,17 @@ module.exports = {
     friendlyName: "UserController",
 
     info: async function (req, res) {
+        // console.log(req.headers);
         var userId = req.user.id;
         var user = await User.findOne({
-            id:userId,
+            id: userId,
         })
+
         var result = exits.success;
         result.data = user;
+        result.data.roles = []
+        result.data.roles.push(user.roleKey);
+        result.data.avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif';
         return res.json(result);
     },
 
@@ -50,13 +55,13 @@ module.exports = {
 
     login: async function (req, res) {
         let data = req.body;
-        if (!(data.name) || !(data.password)) {
+        if (!(data.username) || !(data.password)) {
             var result = exits.faild;
             result.message = "账户和密码不能为空"
             console.log(result)
             return res.json(result);
         }
-        let name = data.name;
+        let name = data.username;
         let password = data.password;
 
         var user = await User.findOne({
@@ -65,7 +70,7 @@ module.exports = {
 
         if (!user) {
             var result = exits.faild;
-            result.code = 10000;
+            result.code = 50000;
             result.message = "no register!"
             return res.json(result);
         }
@@ -92,8 +97,8 @@ module.exports = {
 
     token: function (req, res) {
         User.findOne(req.user.id).exec(function callback(error, user) {
-            if (error) return res.status(500).json({ "code": 10000, "message": "error", "data": null });
-            if (!user) return res.status(500).json({ "code": 10000, "message": "User not found, please sign up.", "data": null });
+            if (error) return res.status(500).json({ "code": 50012, "message": "error", "data": null });
+            if (!user) return res.status(500).json({ "code": 50014, "message": "User not found, please sign up.", "data": null });
 
             user.token = jwt.sign(user.toJSON(), session.secret, {
                 expiresIn: '7d'
@@ -102,6 +107,27 @@ module.exports = {
         });
     },
 
+    spreadInfo: async function (req, res) {
+
+        var user = await User.findOne(req.user.id);
+        var totalSend = user.totalSend;
+        var balance = user.balance;
+        var messages = await MessageInfo.find({
+            userID: req.user.id,
+        })
+        var send = 0;
+        for (var i = 0; i < messages.length; i++) {
+            send += messages[i].send;
+        }
+        var info = {
+            totalSend: totalSend,
+            balance: balance,
+            send: totalSend - send
+        }
+        var result = exits.success;
+        result.data = info;
+        return res.json(result);
+    },
 
 };
 

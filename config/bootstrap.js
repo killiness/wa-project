@@ -29,7 +29,7 @@ module.exports.bootstrap = async function () {
   }
 
 
-  // await User.createEach({
+  // await User.createEach([{
   //   name: 'kall',
   //   password: await sails.helpers.passwords.hashPassword('asd123'),
   //   roleKey: 'admin'
@@ -37,9 +37,9 @@ module.exports.bootstrap = async function () {
   //   name: 'jws',
   //   password: await sails.helpers.passwords.hashPassword('asd123'),
   //   roleKey: 'editor'
-  // });
+  // }]);
 
-  // await AddressBook.createEach({
+  // await AddressBook.createEach([{
   //   phoneNumber: '13452462429',
   //   userID: '1'
   // },
@@ -52,9 +52,9 @@ module.exports.bootstrap = async function () {
   // }, {
   //   phoneNumber: '13452462426',
   //   userID: '2'
-  // });
+  // }]);
 
-  // await SendMessage.createEach({
+  // await SendMessage.createEach([{
   //   address: "123452462428",
   //   content: "sssssss",
   //   messaageID: '1'
@@ -70,7 +70,7 @@ module.exports.bootstrap = async function () {
   //   address: "123452462428",
   //   content: "sssssss",
   //   messaageID: '1'
-  // })
+  // }])
 
 
 };

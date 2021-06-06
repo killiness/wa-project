@@ -32,25 +32,31 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ***************************************************************************/
-  'POST /api/v1/login':       {controller:'UserController',action:'login'},
-  'POST /api/v1/register':    {controller:'UserController',action:'register'},
-  'POST /api/v1/token':       {controller:'UserController',action:'token'},
-  'POST /api/v1/user':        {controller:'UserController',action:'info'},
+  'POST /api/v1/user/login':       {controller:'UserController',action:'login'},
+  'POST /api/v1/user/register':    {controller:'UserController',action:'register'},
+  'POST /api/v1/user/token':       {controller:'UserController',action:'token'},
+  'POST /api/v1/user/info':        {controller:'UserController',action:'info'},
+  'POST /api/v1/user/spead':       {controller:'UserController',action:'spreadInfo'},
 
-  'POST /api/v1/messages':      {controller:'MessageInfoController',action:'messageList'},
-  'POST /api/v1/add_message':   {controller:'MessageInfoController',action:'create'},
-  'POST /api/v1/update_message':{controller:'MessageInfoController',action:'update'},
-  'POST /api/v1/message':       {controller:'MessageInfoController',action:'info'},
+  'GET  /api/v1/message/list':      {controller:'MessageInfoController',action:'messageList'},
+  'POST /api/v1/message/add':       {controller:'MessageInfoController',action:'create'},
+  'POST /api/v1/message/update':    {controller:'MessageInfoController',action:'update'},
+  'POST /api/v1/message/info':      {controller:'MessageInfoController',action:'info'},
 
-  'POST /api/v1/clients':       {controller:'ClientInfoController',action:'clientInfo'},
-  'POST /api/v1/client_create': {controller:'ClientInfoController',action:'create'},
-  'POST /api/v1/client':        {controller:'ClientInfoController',action:'info'},
+  'POST /api/v1/client/list':       {controller:'ClientInfoController',action:'clientInfo'},
+  'POST /api/v1/client/create': {controller:'ClientInfoController',action:'create'},
+  'POST /api/v1/client/info':        {controller:'ClientInfoController',action:'info'},
+  'POST /api/v1/client/start':        {controller:'ClientInfoController',action:'start'},
 
-  'POST /api/v1/add_address':   {controller:'AddressBookController',action:'create'},
-  'POST /api/v1/address_list':  {controller:'AddressBookController',action:'addressList'},
-  'POST /api/v1/address':       {controller:'AddressBookController',action:'info'},
-  'POST /api/v1/add_address_more':   {controller:'AddressBookController',action:'createMore'},
+  'POST /api/v1/address/add':   {controller:'AddressBookController',action:'create'},
+  'POST /api/v1/address/list':  {controller:'AddressBookController',action:'addressList'},
+  'POST /api/v1/address/info':       {controller:'AddressBookController',action:'info'},
+  'POST /api/v1/address/add_more':   {controller:'AddressBookController',action:'createMore'},
+  'POST /api/v1/address/to_list':   {controller:'AddressBookController',action:'toList'},
 
-  'POST /api/v1/send_messages': {controller:'SendMessageController',action:'sendList'},
-  'POST /api/v1/send_info':     {controller:'SendMessageController',action:'info'},
+  'POST /api/v1/send/list': {controller:'SendMessageController',action:'sendListbyUser'},
+  'POST /api/v1/send/info':     {controller:'SendMessageController',action:'info'},
+  'POST /api/v1/send/to_list':     {controller:'SendMessageController',action:'toList'},
+  'POST /api/v1/send/all':     {controller:'SendMessageController',action:'listAll'},
 };
+
